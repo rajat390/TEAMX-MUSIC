@@ -7,7 +7,7 @@ from AnonXMusic.misc import dbb, heroku
 from .logging import LOGGER
 
 dirr()
-#git()
+git()
 dbb()
 heroku()
 
@@ -24,4 +24,3 @@ Spotify = SpotifyAPI()
 Resso = RessoAPI()
 Telegram = TeleAPI()
 YouTube = YouTubeAPI()
-
