@@ -1,33 +1,23 @@
-<h1 align ="center"><img src="https://readme-typing-svg.herokuapp.com?color=F778A1&width=350&lines=✨+🦋xᴛᴇᴀᴍ ᴍᴜsɪᴄ🥀]🖤+🥀"></b></h1>
-
-★ 𝙷𝙴𝚁𝙾𝙺𝚄 + 𝚅𝙿𝚂 ★
-</h2>
-<img src="https://readme-typing-svg.herokuapp.com?color=FF0000&width=420&lines=♦𝙳𝙴𝙿𝙻𝙾𝚈+𝙾𝙽+𝙷𝙴𝚁𝙾𝙺𝚄♦;♨️+𝙽𝙾+𝙷𝙴𝚁𝙾𝙺𝚄+𝙱𝙰𝙽+𝙸𝚂𝚂𝚄𝙴+𝙰𝙻𝚂𝙾+𝚅𝙿𝚂+𝙳𝙴𝙿𝙻𝙾𝚈+📍+𝙿𝚁𝙴𝚂𝙴𝙽𝚃;🎭+𝙿𝙾𝚆𝙴𝚁𝙳+𝙱𝚈+𝐁𝐓𝐒𝐜𝐡𝐢𝐧𝐧𝐚+🎭">
-
-
-<p align="center">
-  <img src="https://telegra.ph/file/a950dba51f34f48ddbf51.jpg">
-</p>
-
-<h3 align="center">
-    ─「 ᴅᴇᴩʟᴏʏ ᴏɴ ʜᴇʀᴏᴋᴜ 」─
-</h3>
-
-<p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/dattudd/Anonxmusic-"> <img src="https://img.shields.io/badge/Deploy%20On%20Heroku-bringle?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
 
 <p align="center">
   <img src="https://telegra.ph/file/6d45fbcee50a426e395ee.jpg">
 </p>
 
+<h3 align="center">
+    ─「 xᴛᴇᴀᴍ ᴍᴜsɪᴄ 」─
+</h3>
+
+<p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/dattudd/Anonxmusic-"> <img src="https://img.shields.io/badge/Deploy%20On%20Heroku-bringle?style=for-the-badge&logo=heroku" width="220" height="38.45"/></a></p>
+
 <p align="center">
-<a href="https://telegram.me/BTSChinna"><img src="https://img.shields.io/badge/-Support%20Group-blue.svg?style=for-the-badge&logo=Telegram"></a>
+<a href="https://t.me/xteam_cloner"><img src="https://img.shields.io/badge/-Support%20Group-blue.svg?style=for-the-badge&logo=Telegram"></a>
 </p>
 
 <p align="center">
-<a href="https://telegram.me/BTSChinna"><img src="https://img.shields.io/badge/-Support%20Channel-blue.svg?style=for-the-badge&logo=Telegram"></a>
+<a href="https://t.me/xteam_cloner"><img src="https://img.shields.io/badge/-Support%20Channel-blue.svg?style=for-the-badge&logo=Telegram"></a>
 </p>
 
- your [Necessary Variables](https://github.com/doraemon890/ANNIE-X-MUSIC/blob/Master/sample.env)
+ [Necessary Variables](https://github.com/xteam-cloner/TEAMX-MUSIC/blob/Master/sample.env)
 - Upgrade and Update by :
  `sudo apt-get update && sudo apt-get upgrade -y`
 - Install Ffmpeg by :
@@ -59,5 +49,5 @@ Press `Ctrl+C` when you're done with editing env and `:wq` to save the env<br>
 
 
 # 𝐂𝐎𝐍𝐓𝐀𝐂𝐓 💗🥀
-<a href="https://t.me/BTSChinna_op"><img title="Telegram" src="https://img.shields.io/badge/ᬃ ⃪ ⷬ ⷡ ⷯ 𝐈𝛕ᷟ‌𝚣⃪ꙴ ⋆‌⃝๛𝐂𝐡𝐢𝐧𝐧𝐚™๛٭》 ✘ ๏𝕡✨-%23000000.svg?&style=for-the-badge&logo=telegram&logoColor=61DAFB"></a>
+<a href="https://t.me/xteam_cloner"><img title="Telegram" src="https://img.shields.io/badge/𝐗𝐓𝐄𝐀𝐌+𝐌𝐔𝐒𝐈𝐂-%23000000.svg?&style=for-the-badge&logo=telegram&logoColor=61DAFB"></a>
 
