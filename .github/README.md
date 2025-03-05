@@ -17,7 +17,7 @@
 <a href="https://t.me/xteam_cloner"><img src="https://img.shields.io/badge/-Support%20Channel-blue.svg?style=for-the-badge&logo=Telegram"></a>
 </p>
 
- [Necessary Variables](https://github.com/xteam-cloner/TEAMX-MUSIC/blob/Master/sample.env)
+ [Necessary Variables](https://github.com/xteam-cloner/TEAMX-MUSIC/blob/master/sample.env)
 - Upgrade and Update by :
  `sudo apt-get update && sudo apt-get upgrade -y`
 - Install Ffmpeg by :
