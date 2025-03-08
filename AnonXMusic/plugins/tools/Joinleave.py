@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import BadRequest
 from AnonXMusic import app
 
-@app.on_message(filters.chat_type(["group", "supergroup"]) & filters.new_chat_members)
+@app.on_message(filters.command(["group", "supergroup"], prefixes=["/", "!", ".", "-"], filters.new_chat_members))
 async def delete_join(client, message):
     """Deletes join messages."""
     try:
