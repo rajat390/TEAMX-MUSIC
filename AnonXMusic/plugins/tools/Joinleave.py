@@ -13,7 +13,7 @@ async def delete_join(client, message):
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
-@app.on_message(filters.chat_type(["group", "supergroup"]) & filters.left_chat_member)
+@app.on_message(filters.command(["group", "supergroup"]) & filters.left_chat_member)
 async def delete_leave(client, message):
     """Deletes leave messages."""
     try:
@@ -24,7 +24,7 @@ async def delete_leave(client, message):
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
-@app.on_message(filters.chat_type(["group", "supergroup"]) & (filters.new_chat_members | filters.left_chat_member))
+@app.on_message(filters.command(["group", "supergroup"]) & (filters.new_chat_members | filters.left_chat_member))
 async def delete_join_leave(client, message):
     """Deletes both join and leave messages."""
     try:
