@@ -46,8 +46,8 @@ async def start_radio_command(client, message):
         chat_id = message.chat.id
         await stream_radio(chat_id)
 
-    except Exception as e:
-        await message.reply_text(f"An error occurred: {e}")
+    #except Exception as e:
+        #await message.reply_text(f"An error occurred: {e}")
 
 @app.on_message(filters.command("stopradio"))
 async def stop_radio_command(client, message):
@@ -55,6 +55,6 @@ async def stop_radio_command(client, message):
         chat_id = message.chat.id
         await app.stop_call(chat_id)
         await message.reply_text("Radio stream stopped.")
-    except Exception as e:
-        await message.reply_text(f"An error occurred: {e}")
+    #except Exception as e:
+        #await message.reply_text(f"An error occurred: {e}")
 
