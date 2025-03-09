@@ -8,6 +8,7 @@ from pyrogram.raw import functions, types
 from pytgcalls.types.raw import VideoStream
 from pytgcalls.types.raw import AudioStream
 from AnonXMusic import app 
+
 # Replace with your API credentials and radio stream URL
 
 async def stream_radio(chat_id):
@@ -39,6 +40,16 @@ async def stream_radio(chat_id):
 
             await app.stream_call(chat_id, AudioPiped(process.stdout))
 
+LOGGER.info(f"Started streaming radio to chat {chat_id}")
+             # Keep the stream running indefinitely.
+             await asyncio.Event().wait() #This is important to keep the stream running.
+ 
+         else:
+             LOGGER.error(f"Failed to start/find voice chat in chat {chat_id}")
+ 
+     except Exception as e:
+         LOGGER.error(f"An error occurred: {e}")
+ 
             
 @app.on_message(filters.command("startradio"))
 async def start_radio_command(client, message):
