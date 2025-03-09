@@ -5,7 +5,8 @@ import subprocess
 from config import RADIO_STREAM_URL
 from pyrogram import Client, filters
 from pyrogram.raw import functions, types
-from pyrogram.types import VoiceStream, AudioPiped
+from pytgcalls.types.raw import VideoStream
+from pytgcalls.types.raw import AudioStream
 from AnonXMusic import app 
 # Replace with your API credentials and radio stream URL
 
