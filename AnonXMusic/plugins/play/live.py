@@ -7,7 +7,7 @@ from AnonXMusic.utils.stream.stream import stream
 from config import BANNED_USERS
 
 
-@app.on_callback_query(filters.regex("LiveStream") & ~BANNED_USERS)
+@app.on_callback_query(filters.command("LiveStream") & filters.group & ~BANNED_USERS)
 @languageCB
 async def play_live_stream(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
