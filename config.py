@@ -59,6 +59,9 @@ STRING5 = getenv("STRING_SESSION5",)
 if not all([STRING1]):
     raise ValueError("One or more STRING_SESSION environment variables are missing")
 
+# Radio Streaming 
+RADIO_STREAM_URL = "https://n0e.radiojar.com/8s5u5tpdtwzuv?rj-ttl=5&rj-tok=AAABjW7yROAA0TUU8cXhXIAi6g"
+
 
 BANNED_USERS = filters.user()
 adminlist = {}
