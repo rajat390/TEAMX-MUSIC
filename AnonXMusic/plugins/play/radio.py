@@ -39,16 +39,7 @@ async def stream_radio(chat_id):
 
             await app.stream_call(chat_id, AudioPiped(process.stdout))
 
-            logger.info(f"Started streaming radio to chat {chat_id}")
-            # Keep the stream running indefinitely.
-            await asyncio.Event().wait() #This is important to keep the stream running.
-
-        else:
-            logger.error(f"Failed to start/find voice chat in chat {chat_id}")
-
-    except Exception as e:
-        logger.error(f"An error occurred: {e}")
-
+            
 @app.on_message(filters.command("startradio"))
 async def start_radio_command(client, message):
     try:
