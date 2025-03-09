@@ -39,12 +39,11 @@ async def stream_radio(chat_id):
             )
 
             await app.stream_call(chat_id, AudioPiped(process.stdout))
-
-LOGGER.info(f"Started streaming radio to chat {chat_id}")
+            try:
+    LOGGER.info(f"Started streaming radio to chat {chat_id}")
              # Keep the stream running indefinitely.
              await asyncio.Event().wait() #This is important to keep the stream running.
- 
-         else:
+else:
              LOGGER.error(f"Failed to start/find voice chat in chat {chat_id}")
  
      except Exception as e:
@@ -57,8 +56,8 @@ async def start_radio_command(client, message):
         chat_id = message.chat.id
         await stream_radio(chat_id)
 
-    #except Exception as e:
-        #await message.reply_text(f"An error occurred: {e}")
+    except Exception as e:
+        await message.reply_text(f"An error occurred: {e}")
 
 @app.on_message(filters.command("stopradio"))
 async def stop_radio_command(client, message):
@@ -66,6 +65,6 @@ async def stop_radio_command(client, message):
         chat_id = message.chat.id
         await app.stop_call(chat_id)
         await message.reply_text("Radio stream stopped.")
-    #except Exception as e:
-        #await message.reply_text(f"An error occurred: {e}")
+    except Exception as e:
+        await message.reply_text(f"An error occurred: {e}")
 
