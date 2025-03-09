@@ -7,22 +7,22 @@ from pyrogram import filters
 load_dotenv()
 
 # Get this value from my.telegram.org/apps
-API_ID = int(getenv("API_ID", "28362850"))
-API_HASH = getenv("API_HASH", "34f9cb93364db16fc45d003e4c81d97a")
+API_ID = int(getenv("API_ID"))
+API_HASH = getenv("API_HASH")
 
 # Get your token from @BotFather on Telegram.
-BOT_TOKEN = getenv("BOT_TOKEN", "6829228356:AAHeRSaglDBLRaqW-ueTMgveYVDQhnvA9-o")
+BOT_TOKEN = getenv("BOT_TOKEN")
 
 # Get your MongoDB URI from cloud.mongodb.com
-MONGO_DB_URI = getenv("MONGO_DB_URI", "")
+MONGO_DB_URI = getenv("MONGO_DB_URI")
 
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 300))
 
 # Chat ID of a group for logging bot's activities
-LOGGER_ID = int(getenv("LOGGER_ID", ""))
+LOGGER_ID = int(getenv("LOGGER_ID"))
 
 # Get this value from @FallenxBot on Telegram by /id
-OWNER_ID = int(getenv("OWNER_ID", ))
+OWNER_ID = int(getenv("OWNER_ID"))
 
 # Fill these variables if you're deploying on Heroku.
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
@@ -39,9 +39,8 @@ SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/xteam_cloner")
 AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "False").lower() in ("true", "1", "t")
 
 # Get these credentials from https://developer.spotify.com/dashboard
-SPOTIFY_CLIENT_ID = getenv("SPOTIFY_CLIENT_ID")
-SPOTIFY_CLIENT_SECRET = getenv("SPOTIFY_CLIENT_SECRET")
-
+SPOTIFY_CLIENT_ID = getenv("SPOTIFY_CLIENT_ID", "e9d00bfcd9a246dabd5c36256ba2302c")
+SPOTIFY_CLIENT_SECRET = getenv("SPOTIFY_CLIENT_SECRET", "0f2b27d79dcf4808bcd4f16e5d7a1478")
 # Maximum limit for fetching playlist's tracks from YouTube, Spotify, Apple links.
 PLAYLIST_FETCH_LIMIT = int(getenv("PLAYLIST_FETCH_LIMIT", 25))
 
