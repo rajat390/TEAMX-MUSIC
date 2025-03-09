@@ -14,26 +14,26 @@ API_HASH = getenv("API_HASH", "34f9cb93364db16fc45d003e4c81d97a")
 BOT_TOKEN = getenv("BOT_TOKEN", "6829228356:AAHeRSaglDBLRaqW-ueTMgveYVDQhnvA9-o")
 
 # Get your MongoDB URI from cloud.mongodb.com
-MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://knight_rider:GODGURU12345@knight.jm59gu9.mongodb.net/?retryWrites=true&w=majority")
+MONGO_DB_URI = getenv("MONGO_DB_URI", "")
 
-DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 60))
+DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 300))
 
 # Chat ID of a group for logging bot's activities
-LOGGER_ID = int(getenv("LOGGER_ID", "-1002141779241"))
+LOGGER_ID = int(getenv("LOGGER_ID", ""))
 
 # Get this value from @FallenxBot on Telegram by /id
-OWNER_ID = int(getenv("OWNER_ID", 6896043885))
+OWNER_ID = int(getenv("OWNER_ID", ))
 
 # Fill these variables if you're deploying on Heroku.
 HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
-UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/dattudd/Chinnaxmusic")
+UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/xteam-cloner/TEAMX-MUSIC")
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
 GIT_TOKEN = getenv("GIT_TOKEN", None)  # Fill this variable if your upstream repository is private
 
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/DFSchinnaop")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/DFSchinnaop")
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/xteam_cloner")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/xteam_cloner")
 
 # Set this to True if you want the assistant to automatically leave chats after an interval
 AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "False").lower() in ("true", "1", "t")
@@ -50,7 +50,7 @@ TG_AUDIO_FILESIZE_LIMIT = int(getenv("TG_AUDIO_FILESIZE_LIMIT", 104857600))
 TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", 1073741824))
 
 # Load session strings from environment variables
-STRING1 = getenv("STRING_SESSION",  "BQGwyGIAbkJa8LfVmujm8nBgj84o_BzxUnfcJGhKmpoYIFU2ffT4gfrCEKWefJIg-DOii1usWJSkkFf272OPX3dH9XZopQ2XOumsXW6IvHYqBSY6j6jBLdxMr_3yHzLi_BhfB0cEeUq6GVDndUHt94j1aMQ2vjjxNtM6IfH5T-N2mQHcdeeNkWOzQ1Pd29gS-AtrrTnJ8rmhvTs8Rh5VWVN26CPG9uc-TW1DN6ovC6pNXa84xFKR2uuBtuvegzUxxoRpUZLgAeAG05A7mZH9MGLalO1Cc-oRoLTvIPoRU8Et48TEqEN5yYXaxxZEzsEiWn9AWhcaafQfAPBOs3Mpnck-EpltdQAAAAHETnMdAA")
+STRING1 = getenv("STRING_SESSION",)
 STRING2 = getenv("STRING_SESSION2",) 
 STRING3 = getenv("STRING_SESSION3",)
 STRING4 = getenv("STRING_SESSION4",)
@@ -68,8 +68,8 @@ votemode = {}
 autoclean = []
 confirmer = {}
 
-START_IMG_URL = getenv("START_IMG_URL", "https://telegra.ph/file/8d7b534e34e13316a7dd2.jpg")
-PING_IMG_URL = getenv("PING_IMG_URL", "https://telegra.ph/file/ca95213f8c1dd9a19c239.jpg")
+START_IMG_URL = getenv("START_IMG_URL", "https://files.catbox.moe/ib6qvk.mp4")
+PING_IMG_URL = getenv("PING_IMG_URL", "https://files.catbox.moe/ib6qvk.mp4")
 PLAYLIST_IMG_URL = "https://telegra.ph/file/8d7b534e34e13316a7dd2.jpg"
 STATS_IMG_URL = "https://te.legra.ph/file/e906c2def5afe8a9b9120.jpg"
 TELEGRAM_AUDIO_URL = "https://te.legra.ph/file/6298d377ad3eb46711644.jpg"
