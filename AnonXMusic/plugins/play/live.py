@@ -1,11 +1,13 @@
 from pyrogram import filters
-
 from AnonXMusic import YouTube, app
 from AnonXMusic.utils.channelplay import get_channeplayCB
 from AnonXMusic.utils.decorators.language import languageCB
 from AnonXMusic.utils.stream.stream import stream
 from config import BANNED_USERS
+import logging
 
+# Konfigurasi logging
+logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
 @app.on_callback_query(filters.command("LiveStream") & filters.group & ~BANNED_USERS)
 @languageCB
@@ -13,30 +15,46 @@ async def play_live_stream(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
     callback_request = callback_data.split(None, 1)[1]
     vidid, user_id, mode, cplay, fplay = callback_request.split("|")
+    
+    # Validasi pengguna
     if CallbackQuery.from_user.id != int(user_id):
         try:
-            return await CallbackQuery.answer(_["playcb_1"], show_alert=True)
-        except:
-            return
+            await CallbackQuery.answer(_["playcb_1"], show_alert=True)
+        except Exception as e:
+            logging.error(f"Error answering callback query: {e}")
+        return
+    
+    # Mendapatkan detail channel play
     try:
         chat_id, channel = await get_channeplayCB(_, cplay, CallbackQuery)
-    except:
+    except Exception as e:
+        logging.error(f"Error getting channel play: {e}")
         return
+    
     video = True if mode == "v" else None
     user_name = CallbackQuery.from_user.first_name
-    await CallbackQuery.message.delete()
+    
     try:
+        await CallbackQuery.message.delete()
         await CallbackQuery.answer()
-    except:
-        pass
-    mystic = await CallbackQuery.message.reply_text(
-        _["play_2"].format(channel) if channel else _["play_1"]
-    )
+    except Exception as e:
+        logging.error(f"Error deleting message or answering callback: {e}")
+    
+    # Memberi tahu pengguna bahwa permintaan sedang diproses
+    message_text = _["play_2"].format(channel) if channel else _["play_1"]
+    mystic = await CallbackQuery.message.reply_text(message_text)
+    
+    # Mendapatkan detail video YouTube
     try:
         details, track_id = await YouTube.track(vidid, True)
-    except:
-        return await mystic.edit_text(_["play_3"])
+    except Exception as e:
+        logging.error(f"Error getting YouTube track details: {e}")
+        await mystic.edit_text(_["play_3"])
+        return
+    
     ffplay = True if fplay == "f" else None
+    
+    # Memeriksa apakah video adalah live stream
     if not details["duration_min"]:
         try:
             await stream(
@@ -54,7 +72,14 @@ async def play_live_stream(client, CallbackQuery, _):
         except Exception as e:
             ex_type = type(e).__name__
             err = e if ex_type == "AssistantErr" else _["general_2"].format(ex_type)
-            return await mystic.edit_text(err)
+            logging.error(f"Error streaming live video: {e}")
+            await mystic.edit_text(err)
+            return
     else:
-        return await mystic.edit_text("» ɴᴏᴛ ᴀ ʟɪᴠᴇ sᴛʀᴇᴀᴍ.")
-    await mystic.delete()
+        await mystic.edit_text("» ɴᴏᴛ ᴀ ʟɪᴠᴇ sᴛʀᴇᴀᴍ.")
+    
+    try:
+        await mystic.delete()
+    except Exception as e:
+        logging.error(f"Error deleting mystic message: {e}")
+        
