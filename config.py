@@ -35,6 +35,9 @@ GIT_TOKEN = getenv("GIT_TOKEN", None)  # Fill this variable if your upstream rep
 SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/xteam_cloner")
 SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/xteam_cloner")
 
+# Set it true if you want your bot to be private only [You'll need to allow CHAT_ID via /authorize command then only your bot will play music in that chat.]
+PRIVATE_BOT_MODE = getenv("PRIVATE_BOT_MODE", "False")
+
 # Set this to True if you want the assistant to automatically leave chats after an interval
 AUTO_LEAVING_ASSISTANT = getenv("AUTO_LEAVING_ASSISTANT", "False").lower() in ("true", "1", "t")
 
