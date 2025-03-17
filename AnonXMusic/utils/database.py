@@ -39,6 +39,9 @@ playtype = {}
 skipmode = {}
 
 
+async def is_commanddelete_on(chat_id: int) -> bool:
+    return chat_id not in command
+
 async def get_assistant_number(chat_id: int) -> str:
     assistant = assistantdict.get(chat_id)
     return assistant
