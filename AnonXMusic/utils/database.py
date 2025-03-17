@@ -647,3 +647,34 @@ async def remove_banned_user(user_id: int):
     if not is_gbanned:
         return
     return await blockeddb.delete_one({"user_id": user_id})
+
+
+async def is_served_private_chat(chat_id: int) -> bool:
+    chat = await privatedb.find_one({"chat_id": chat_id})
+    if not chat:
+        return False
+    return True
+
+
+async def add_private_chat(chat_id: int):
+    is_served = await is_served_private_chat(chat_id)
+    if is_served:
+        return
+    return await privatedb.insert_one({"chat_id": chat_id})
+
+
+async def remove_private_chat(chat_id: int):
+    is_served = await is_served_private_chat(chat_id)
+    if not is_served:
+        return
+    return await privatedb.delete_one({"chat_id": chat_id})
+
+
+# Auth Users DB
+
+
+async def _get_authusers(chat_id: int) -> Dict[str, int]:
+    _notes = await authuserdb.find_one({"chat_id": chat_id})
+    if not _notes:
+        return {}
+    return _notes["notes"]
