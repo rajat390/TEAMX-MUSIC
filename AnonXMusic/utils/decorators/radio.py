@@ -10,7 +10,7 @@ from pyrogram.errors import (
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from config import PRIVATE_BOT_MODE
-from config import SUPPORT_GROUP as SUPPORT_CHAT
+from config import SUPPORT_CHAT
 from strings import get_string
 from AnonXMusic import YouTube, app
 from AnonXMusic.core.call import _st_ as clean
