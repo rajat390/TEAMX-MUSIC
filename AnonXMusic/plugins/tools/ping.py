@@ -15,7 +15,6 @@ from config import BANNED_USERS, PING_IMG_URL
 @app.on_message(filters.command(["ping", "alive"]) & ~BANNED_USERS)
 @Client.on_message(
     filters.command(["ping"], ".") & filters.me)
-)
 @language
 async def ping_com(client, message: Message, _):
     start = datetime.now()
