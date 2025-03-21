@@ -32,7 +32,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 def inline_keyboard(client, message):
     keyboard = InlineKeyboardMarkup(
         [
-            [InlineKeyboardButton("Tombol Inline 1", callback_data="tombol1")],
+            [InlineKeyboardButton("Tombol Inline 1", callback_data="start_panel")],
             [InlineKeyboardButton("Tombol Inline 2", url="https://www.example.com")],
         ]
     )
@@ -40,7 +40,7 @@ def inline_keyboard(client, message):
 
 @app.on_callback_query()
 def handle_callback(client, callback_query):
-    if callback_query.data == "help_pannel":
+    if callback_query.data == "help":
         callback_query.answer("Anda menekan Tombol Inline 1!")
         callback_query.edit_message_text("Tombol 1 ditekan.")
 
