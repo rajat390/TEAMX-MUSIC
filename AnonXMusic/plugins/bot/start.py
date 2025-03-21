@@ -24,6 +24,27 @@ from config import BANNED_USERS
 from strings import get_string
 
 
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+
+@app.on_message(filters.command("inline"))
+def inline_keyboard(client, message):
+    keyboard = InlineKeyboardMarkup(
+        [
+            [InlineKeyboardButton("Tombol Inline 1", callback_data="tombol1")],
+            [InlineKeyboardButton("Tombol Inline 2", url="https://www.example.com")],
+        ]
+    )
+    message.reply_text("Pilih tombol inline:", reply_markup=keyboard)
+
+@app.on_callback_query()
+def handle_callback(client, callback_query):
+    if callback_query.data == "help_pannel":
+        callback_query.answer("Anda menekan Tombol Inline 1!")
+        callback_query.edit_message_text("Tombol 1 ditekan.")
+
+
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
 async def start_pm(client, message: Message, _):
