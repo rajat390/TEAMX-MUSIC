@@ -13,7 +13,7 @@ import sys
 from telethon.errors.rpcerrorlist import AuthKeyDuplicatedError
 from telethon.sessions.string import _STRUCT_PREFORMAT, CURRENT_VERSION, StringSession
 
-from config import Var
+import config
 from . import *
 from .BaseClient import UltroidClient
 
@@ -76,8 +76,8 @@ def validate_session(session, logger=LOGS, _exit=True):
 def vc_connection(udB, ultroid_bot):
     from strings import get_string
 
-    STRING_SESSION = Var.STRING_SESSION or udB.get_key("STRING_SESSION")
-    if STRING_SESSION and STRING_SESSION != Var.SESSION:
+    STRING_SESSION = config.STRING_SESSION or udB.get_key("STRING_SESSION")
+    if STRING_SESSION and STRING_SESSION != config.SESSION:
         LOGS.info("Starting up VcClient.")
         try:
             return UltroidClient(
