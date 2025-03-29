@@ -2,7 +2,6 @@
 
 if python3 -m AnonXMusic; then
   if python3 -m pyUltroid; then
-    perbaikan
   else
     echo "pyUltroid failed."
     exit 1
