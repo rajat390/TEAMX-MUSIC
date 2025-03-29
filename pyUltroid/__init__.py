@@ -21,7 +21,7 @@ class ULTConfig:
 if run_as_module:
     import time
 
-    from .configs import Var
+    import config
     from .startup import *
     from .startup._database import UltroidDB
     from .startup.BaseClient import UltroidClient
@@ -67,10 +67,10 @@ if run_as_module:
             sys.exit()
     else:
         ultroid_bot = UltroidClient(
-            validate_session(Var.SESSION, LOGS),
+            validate_session(config.SESSION, LOGS),
             udB=udB,
             app_version=ultroid_version,
-            device_model="Ultroid",
+            device_model="Userbot",
         )
         ultroid_bot.run_in_loop(autobot())
 
@@ -103,6 +103,6 @@ else:
 
     from logging import getLogger
 
-    LOGS = getLogger("pyUltroid")
+    LOGS = getLogger("Userbot")
 
     ultroid_bot = asst = udB = vcClient = None
