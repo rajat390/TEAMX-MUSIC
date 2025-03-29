@@ -5,11 +5,6 @@ from dotenv import load_dotenv
 from pyrogram import filters
 import sys
 from decouple import config
-import re
-from os import getenv
-
-from dotenv import load_dotenv
-from pyrogram import filters
 
 load_dotenv()
 
@@ -53,7 +48,7 @@ SPOTIFY_CLIENT_SECRET = config("SPOTIFY_CLIENT_SECRET", default=getenv("SPOTIFY_
 PLAYLIST_FETCH_LIMIT = int(config("PLAYLIST_FETCH_LIMIT", default=getenv("PLAYLIST_FETCH_LIMIT", "25")))
 TG_AUDIO_FILESIZE_LIMIT = int(config("TG_AUDIO_FILESIZE_LIMIT", default=getenv("TG_AUDIO_FILESIZE_LIMIT", "104857600")))
 TG_VIDEO_FILESIZE_LIMIT = int(config("TG_VIDEO_FILESIZE_LIMIT", default=getenv("TG_VIDEO_FILESIZE_LIMIT", "1073741824")))
-STRING1 = getenv("STRING_SESSION", None)
+STRING1 = config("STRING_SESSION", None)
 STRING2 = getenv("STRING_SESSION2", None)
 STRING3 = getenv("STRING_SESSION3", None)
 STRING4 = getenv("STRING_SESSION4", None)
