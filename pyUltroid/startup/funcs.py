@@ -16,7 +16,7 @@ from telethon import __version__
 import pyrogram 
 from platform import python_version
 from pyUltroid.version import __version__ as UltVer
-from config import Var
+import config
 #from .. import ultroid_bot
 try:
     from pytz import timezone
@@ -77,7 +77,7 @@ async def autoupdate_local_database():
     try:
         LOG_CHANNEL = (
             udB.get_key("LOG_CHANNEL")
-            or Var.LOG_CHANNEL
+            or config.LOG_CHANNEL
             or asst._cache.get("LOG_CHANNEL")
             or "me"
         )
