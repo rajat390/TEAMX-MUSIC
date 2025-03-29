@@ -13,11 +13,11 @@ from .. import run_as_module
 from . import *
 
 if run_as_module:
-    from ..configs import Var
+    import config
 
 
 Redis = MongoClient = psycopg2 = Database = None
-if Var.REDIS_URI or Var.REDISHOST:
+if config.REDIS_URI or config.REDISHOST:
     try:
         from redis import Redis
     except ImportError:
@@ -31,7 +31,7 @@ elif config.MONGO_DB_URI:
         LOGS.info("Installing 'pymongo' for database.")
         os.system(f"{sys.executable} -m pip install -q pymongo[srv]")
         from pymongo import MongoClient
-elif Var.DATABASE_URL:
+elif config.DATABASE_URL:
     try:
         import psycopg2
     except ImportError:
