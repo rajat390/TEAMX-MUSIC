@@ -1,6 +1,13 @@
 #!/bin/bash
 
-python3 -m AnonXMusic &
-python3 -m pyUltroid &
-
-echo "userbot dan musibot sedang berjalan di latar belakang."
+if python3 -m AnonXMusic; then
+  if python3 -m pyUltroid; then
+    perbaikan
+  else
+    echo "pyUltroid failed."
+    exit 1
+  fi
+else
+  echo "AnonXMusic failed."
+  exit 1
+fi
