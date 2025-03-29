@@ -18,7 +18,7 @@ from urllib.request import urlretrieve
 from .. import run_as_module
 
 if run_as_module:
-from ..confgs import Var
+    from ..confgs import Var
 
 
 try:
