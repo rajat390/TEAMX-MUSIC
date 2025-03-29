@@ -91,4 +91,4 @@ def validate_session(session, logger=LOGS, _exit=True):
         except Exception as er:
             LOGS.info("While creating Client for VC.")
             LOGS.exception(er)"""
-    return ultroid_bot
+    #return ultroid_bot
