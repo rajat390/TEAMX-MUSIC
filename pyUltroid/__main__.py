@@ -53,8 +53,8 @@ def main():
 
     pmbot = udB.get_key("PMBOT")
     manager = udB.get_key("MANAGER")
-    addons = udB.get_key("ADDONS") or Var.ADDONS
-    vcbot = udB.get_key("VCBOT") or Var.VCBOT
+    addons = udB.get_key("ADDONS") or config.ADDONS
+    vcbot = udB.get_key("VCBOT") or config.VCBOT
     if HOSTED_ON == "okteto":
         vcbot = False
 
