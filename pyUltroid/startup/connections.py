@@ -73,11 +73,11 @@ def validate_session(session, logger=LOGS, _exit=True):
         sys.exit()
 
 
-"""def vc_connection(udB, ultroid_bot):
+def vc_connection(udB, ultroid_bot):
     from strings import get_string
 
-    VC_SESSION = config.SESSION or udB.get_key("VC_SESSION")
-    if VC_SESSION and SESSION != config.SESSION:
+    VC_SESSION = Var.VC_SESSION or udB.get_key("VC_SESSION")
+    if VC_SESSION and VC_SESSION != Var.SESSION:
         LOGS.info("Starting up VcClient.")
         try:
             return UltroidClient(
@@ -90,5 +90,5 @@ def validate_session(session, logger=LOGS, _exit=True):
             udB.del_key("VC_SESSION")
         except Exception as er:
             LOGS.info("While creating Client for VC.")
-            LOGS.exception(er)"""
-    #return ultroid_bot
+            LOGS.exception(er)
+    return ultroid_bot
