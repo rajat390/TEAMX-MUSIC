@@ -1,45 +1,100 @@
 #!/bin/bash
 
+# Colors for terminal output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Function to print colored status messages
+print_status() {
+    local color=$1
+    local message=$2
+    echo -e "${color}${message}${NC}"
+}
+
+# Function to check if required environment variables are set
+check_env() {
+    local required_vars=("API_ID" "API_HASH" "BOT_TOKEN" "MONGO_DB_URI" "STRING_SESSION")
+    local missing_vars=()
+    
+    for var in "${required_vars[@]}"; do
+        if [ -z "$(grep "^${var}=" .env)" ]; then
+            missing_vars+=("$var")
+        fi
+    done
+    
+    if [ ${#missing_vars[@]} -ne 0 ]; then
+        print_status "$RED" "Error: Missing required environment variables:"
+        for var in "${missing_vars[@]}"; do
+            echo "- $var"
+        done
+        return 1
+    fi
+    return 0
+}
+
 # Function to run AnonXMusic and handle errors
 run_anonxmusic() {
-  if python3 -m AnonXMusic; then
-    return 0  # Success
-  else
-    echo "AnonXMusic failed."
-    return 1  # Failure
-  fi
+    print_status "$YELLOW" "Starting AnonXMusic bot..."
+    if python3 -m AnonXMusic; then
+        print_status "$GREEN" "AnonXMusic is running successfully!"
+        return 0
+    else
+        print_status "$RED" "AnonXMusic failed to start."
+        return 1
+    fi
 }
 
 # Function to run pyUltroid and handle errors
 run_pyultroid() {
-  if python3 -m pyUltroid; then
-    return 0  # Success
-  else
-    echo "pyUltroid failed."
-    return 1  # Failure
-  fi
+    print_status "$YELLOW" "Starting pyUltroid userbot..."
+    if python3 -m pyUltroid; then
+        print_status "$GREEN" "pyUltroid is running successfully!"
+        return 0
+    else
+        print_status "$RED" "pyUltroid failed to start."
+        return 1
+    fi
 }
 
-# Run in an alternating fashion
-while true; do
-  if run_anonxmusic; then
-    echo "AnonXMusic ran successfully. Starting pyUltroid."
-    if run_pyultroid; then
-      echo "pyUltroid ran successfully. Restarting AnonXMusic."
-    else
-      echo "pyUltroid failed. Exiting."
-      break # Stop if pyUltroid fails
+# Main execution
+main() {
+    # Check environment variables first
+    if ! check_env; then
+        exit 1
     fi
-  else
-      echo "AnonXMusic failed. Trying pyUltroid."
-      if run_pyultroid; then
-          echo "pyUltroid ran successfully. Starting AnonXMusic."
-      else
-          echo "pyUltroid failed. Exiting."
-          break # Stop if pyUltroid fails.
-      fi
-  fi
-  sleep 5 # wait for 5 seconds before the next loop. Adjust as needed.
-done
 
-echo "Script terminated."
+    # Install required packages if not already installed
+    if ! pip3 list | grep -q "pyrogram"; then
+        print_status "$YELLOW" "Installing required packages..."
+        pip3 install -r requirements.txt
+    fi
+
+    # Run both bots in parallel with error handling
+    while true; do
+        # Start AnonXMusic
+        if run_anonxmusic; then
+            print_status "$GREEN" "AnonXMusic started successfully."
+        else
+            print_status "$RED" "Failed to start AnonXMusic. Retrying in 5 seconds..."
+            sleep 5
+            continue
+        fi
+
+        # Start pyUltroid
+        if run_pyultroid; then
+            print_status "$GREEN" "pyUltroid started successfully."
+        else
+            print_status "$RED" "Failed to start pyUltroid. Retrying in 5 seconds..."
+            sleep 5
+            continue
+        fi
+
+        # If both bots are running, wait before checking again
+        sleep 10
+    done
+}
+
+# Run the main function
+main
