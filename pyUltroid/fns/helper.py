@@ -18,7 +18,7 @@ from urllib.request import urlretrieve
 from .. import run_as_module
 
 if run_as_module:
-    from ..configs import Var
+    import config
 
 
 try:
@@ -191,12 +191,12 @@ if run_as_module:
         from .. import LOGS
 
         xx = await eor(event, "`Processing...`")
-        if not (Var.HEROKU_API and Var.HEROKU_APP_NAME):
+        if not (config.HEROKU_API and config.HEROKU_APP_NAME):
             return await xx.edit(
                 "Please set `HEROKU_APP_NAME` and `HEROKU_API` in vars."
             )
         try:
-            app = (heroku3.from_key(Var.HEROKU_API)).app(Var.HEROKU_APP_NAME)
+            app = (heroku3.from_key(config.HEROKU_API)).app(config.HEROKU_APP_NAME)
         except BaseException as se:
             LOGS.info(se)
             return await xx.edit(
@@ -565,10 +565,10 @@ async def progress(current, total, event, start, type_of_ps, file_name=None):
 
 
 async def restart(ult=None):
-    if Var.HEROKU_APP_NAME and Var.HEROKU_API:
+    if config.HEROKU_APP_NAME and config.HEROKU_API:
         try:
-            Heroku = heroku3.from_key(Var.HEROKU_API)
-            app = Heroku.apps()[Var.HEROKU_APP_NAME]
+            Heroku = heroku3.from_key(config.HEROKU_API)
+            app = Heroku.apps()[config.HEROKU_APP_NAME]
             if ult:
                 await ult.edit("`Restarting your app, please wait for a minute!`")
             app.restart()
@@ -602,12 +602,12 @@ async def shutdown(ult):
 
     ult = await eor(ult, "Shutting Down")
     if HOSTED_ON == "heroku":
-        if not (Var.HEROKU_APP_NAME and Var.HEROKU_API):
+        if not (config.HEROKU_APP_NAME and config.HEROKU_API):
             return await ult.edit("Please Fill `HEROKU_APP_NAME` and `HEROKU_API`")
         dynotype = os.getenv("DYNO").split(".")[0]
         try:
-            Heroku = heroku3.from_key(Var.HEROKU_API)
-            app = Heroku.apps()[Var.HEROKU_APP_NAME]
+            Heroku = heroku3.from_key(config.HEROKU_API)
+            app = Heroku.apps()[config.HEROKU_APP_NAME]
             await ult.edit("`Shutting Down your app, please wait for a minute!`")
             app.process_formation()[dynotype].scale(0)
         except BaseException as e:
