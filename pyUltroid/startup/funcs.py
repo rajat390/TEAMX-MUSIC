@@ -53,11 +53,11 @@ db_url = 0
 
 
 async def autoupdate_local_database():
-    from .. import Var, asst, udB, ultroid_bot
+    from .. import config, asst, udB, ultroid_bot
 
     global db_url
     db_url = (
-        udB.get_key("TGDB_URL") or Var.TGDB_URL or ultroid_bot._cache.get("TGDB_URL")
+        udB.get_key("TGDB_URL") or config.TGDB_URL or ultroid_bot._cache.get("TGDB_URL")
     )
     if db_url:
         _split = db_url.split("/")
@@ -76,9 +76,9 @@ async def autoupdate_local_database():
             pass
     try:
         LOG_CHANNEL = (
-            udB.get_key("LOG_CHANNEL")
-            or config.LOG_CHANNEL
-            or asst._cache.get("LOG_CHANNEL")
+            udB.get_key("LOGGER_ID")
+            or config.LOGGER_ID
+            or asst._cache.get("LOGGER_ID")
             or "me"
         )
         msg = await asst.send_message(
@@ -98,7 +98,7 @@ def update_envs():
         [_envs.append(_) for _ in list(RepositoryEnv(config._find_file(".")).data)]
     for envs in _envs:
         if (
-            envs in ["LOG_CHANNEL", "BOT_TOKEN", "BOTMODE", "DUAL_MODE", "language"]
+            envs in ["LOGGER_ID", "BOT_TOKEN", "BOTMODE", "DUAL_MODE", "language"]
             or envs in udB.keys()
         ):
             if _value := os.environ.get(envs):
@@ -226,25 +226,25 @@ async def autobot():
 async def autopilot():
     from .. import asst, udB, ultroid_bot
 
-    channel = udB.get_key("LOG_CHANNEL")
+    channel = udB.get_key("LOGGER_ID")
     new_channel = None
     if channel:
         try:
             chat = await ultroid_bot.get_entity(channel)
         except BaseException as err:
             LOGS.exception(err)
-            udB.del_key("LOG_CHANNEL")
+            udB.del_key("LOGGER_ID")
             channel = None
     if not channel:
 
         async def _save(exc):
-            udB._cache["LOG_CHANNEL"] = ultroid_bot.me.id
+            udB._cache["LOGGER_ID"] = ultroid_bot.me.id
             await asst.send_message(
                 ultroid_bot.me.id, f"Failed to Create Log Channel due to {exc}.."
             )
 
         if ultroid_bot._bot:
-            msg_ = "'LOG_CHANNEL' not found! Add it in order to use 'BOTMODE'"
+            msg_ = "'LOGGER_ID' not found! Add it in order to use 'BOTMODE'"
             LOGS.error(msg_)
             return await _save(msg_)
         LOGS.info("Creating a Log Channel for You!")
@@ -271,7 +271,7 @@ async def autopilot():
         new_channel = True
         chat = r.chats[0]
         channel = get_peer_id(chat)
-        udB.set_key("LOG_CHANNEL", channel)
+        udB.set_key("LOGGER_ID", channel)
     assistant = True
     try:
         await ultroid_bot.get_permissions(int(channel), asst.me.username)
@@ -338,7 +338,7 @@ async def customize():
 
     rem = None
     try:
-        chat_id = udB.get_key("LOG_CHANNEL")
+        chat_id = udB.get_key("LOGGER_ID")
         if asst.me.photo:
             return
         LOGS.info("Customising Ur Assistant Bot in @BOTFATHER")
@@ -441,7 +441,7 @@ async def fetch_ann():
     from ..fns.tools import async_searcher
 
     get_ = udB.get_key("OLDANN") or []
-    chat_id = udB.get_key("LOG_CHANNEL")
+    chat_id = udB.get_key("LOGGER_ID")
     try:
         updts = await async_searcher(
             "https://ultroid-api.vercel.app/announcements", post=True, re_json=True
@@ -472,7 +472,7 @@ async def fetch_ann():
 async def ready():
     from .. import asst, udB, ultroid_bot
 
-    chat_id = udB.get_key("LOG_CHANNEL")
+    chat_id = udB.get_key("LOGGER_ID")
     spam_sent = None
     if not udB.get_key("INIT_DEPLOY"):  # Detailed Message at Initial Deploy
         MSG = """ **Thanks for Deploying Userbot!**
