@@ -48,11 +48,15 @@ SPOTIFY_CLIENT_SECRET = config("SPOTIFY_CLIENT_SECRET", default=getenv("SPOTIFY_
 PLAYLIST_FETCH_LIMIT = int(config("PLAYLIST_FETCH_LIMIT", default=getenv("PLAYLIST_FETCH_LIMIT", "25")))
 TG_AUDIO_FILESIZE_LIMIT = int(config("TG_AUDIO_FILESIZE_LIMIT", default=getenv("TG_AUDIO_FILESIZE_LIMIT", "104857600")))
 TG_VIDEO_FILESIZE_LIMIT = int(config("TG_VIDEO_FILESIZE_LIMIT", default=getenv("TG_VIDEO_FILESIZE_LIMIT", "1073741824")))
-STRING1 = config("STRING_SESSION", None)
+
+# Get your pyrogram v2 session from @StringFatherBot on Telegram
+STRING1 = getenv("STRING_SESSION", None)
 STRING2 = getenv("STRING_SESSION2", None)
 STRING3 = getenv("STRING_SESSION3", None)
 STRING4 = getenv("STRING_SESSION4", None)
 STRING5 = getenv("STRING_SESSION5", None)
+
+
 RADIO_STREAM_URL = config("RADIO_STREAM_URL", default=getenv("RADIO_STREAM_URL", "https://n0e.radiojar.com/8s5u5tpdtwzuv?rj-ttl=5&rj-tok=AAABjW7yROAA0TUU8cXhXIAi6g"))
 START_IMG_URL = config("START_IMG_URL", default=getenv("START_IMG_URL", "https://files.catbox.moe/ib6qvk.mp4"))
 PING_IMG_URL = config("PING_IMG_URL", default=getenv("PING_IMG_URL", "https://files.catbox.moe/ib6qvk.mp4"))
