@@ -82,7 +82,7 @@ REDISUSER = config("REDISUSER", default=None)
 DATABASE_URL = config("DATABASE_URL", default=None)
 
 # Ensure required environment variables are loaded
-if not Config.STRING1:
+if not config.STRING1:
     raise ValueError("STRING_SESSION environment variable is missing")
 
 # Helper functions
@@ -92,10 +92,10 @@ def time_to_seconds(time):
 
 DURATION_LIMIT = int(time_to_seconds(f"{Config.DURATION_LIMIT_MIN}:00"))
 
-if Config.SUPPORT_CHANNEL and not re.match(r"(?:http|https)://", Config.SUPPORT_CHANNEL):
+if config.SUPPORT_CHANNEL and not re.match(r"(?:http|https)://", Config.SUPPORT_CHANNEL):
     raise SystemExit("[ERROR] - Your SUPPORT_CHANNEL URL is incorrect. Please ensure it starts with https://")
 
-if Config.SUPPORT_CHAT and not re.match(r"(?:http|https)://", Config.SUPPORT_CHAT):
+if config.SUPPORT_CHAT and not re.match(r"(?:http|https)://", Config.SUPPORT_CHAT):
     raise SystemExit("[ERROR] - Your SUPPORT_CHAT URL is incorrect. Please ensure it starts with https://")
 
 # Global variables
