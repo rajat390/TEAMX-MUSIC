@@ -327,8 +327,8 @@ def UltroidDB():
     try:
         if Redis:
             return RedisDB(
-                host=Var.REDIS_URI or Var.REDISHOST,
-                password=Var.REDIS_PASSWORD or Var.REDISPASSWORD,
+                host=config.REDIS_URI or config.REDISHOST,
+                password=Var.REDIS_PASSWORD or config.REDISPASSWORD,
                 port=Var.REDISPORT,
                 platform=HOSTED_ON,
                 decode_responses=True,
@@ -336,9 +336,9 @@ def UltroidDB():
                 retry_on_timeout=True,
             )
         elif MongoClient:
-            return MongoDB(Var.MONGO_URI)
+            return MongoDB(config.MONGO_URI)
         elif psycopg2:
-            return SqlDB(Var.DATABASE_URL)
+            return SqlDB(config.DATABASE_URL)
         else:
             LOGS.critical(
                 "No DB requirement fullfilled!\nPlease install redis, mongo or sql dependencies...\nTill then using local file as database."
