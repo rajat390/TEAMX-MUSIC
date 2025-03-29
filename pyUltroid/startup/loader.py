@@ -12,7 +12,7 @@ from shutil import rmtree
 
 from decouple import config
 from git import Repo
-
+import config
 from .. import *
 from ..dB._core import HELP
 from ..loader import Loader
@@ -48,7 +48,7 @@ def _after_load(loader, module, plugin_name=""):
 def load_other_plugins(addons=None, pmbot=None, manager=None, vcbot=None):
 
     # for official
-    _exclude = udB.get_key("EXCLUDE_OFFICIAL") or config("EXCLUDE_OFFICIAL", None)
+    _exclude = udB.get_key("EXCLUDE_OFFICIAL") or config.config("EXCLUDE_OFFICIAL", None)
     _exclude = _exclude.split() if _exclude else []
 
     # "INCLUDE_ONLY" was added to reduce Big List in "EXCLUDE_OFFICIAL" Plugin
