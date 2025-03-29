@@ -13,6 +13,32 @@ print_status() {
     echo -e "${color}${message}${NC}"
 }
 
+# Function to check if a Python package is installed
+check_package() {
+    python3 -c "import $1" &>/dev/null
+    return $?
+}
+
+# Function to check required packages
+check_requirements() {
+    local required_packages=("pyrogram" "telethon" "tgcrypto" "pymongo")
+    local missing_packages=()
+
+    for package in "${required_packages[@]}"; do
+        if ! check_package $package; then
+            missing_packages+=("$package")
+        fi
+    done
+
+    if [ ${#missing_packages[@]} -ne 0 ]; then
+        print_status "$YELLOW" "Installing missing packages: ${missing_packages[*]}"
+        pip3 install -r requirements.txt
+        return $?
+    fi
+    print_status "$GREEN" "All required packages are already installed."
+    return 0
+}
+
 # Function to check if required environment variables are set
 check_env() {
     local required_vars=("API_ID" "API_HASH" "BOT_TOKEN" "MONGO_DB_URI" "STRING_SESSION")
@@ -51,12 +77,16 @@ run_anonxmusic() {
 run_pyultroid() {
     while true; do
         print_status "$YELLOW" "Starting pyUltroid userbot..."
-        if python3 -m pyUltroid; then
+        # Set the PYTHONPATH to include the current directory
+        export PYTHONPATH="${PYTHONPATH}:${PWD}"
+        cd pyUltroid
+        if python3 -m __main__; then
             print_status "$GREEN" "pyUltroid is running successfully!"
         else
             print_status "$RED" "pyUltroid failed to start. Retrying in 5 seconds..."
             sleep 5
         fi
+        cd ..
     done
 }
 
@@ -64,7 +94,7 @@ run_pyultroid() {
 stop_bots() {
     print_status "$YELLOW" "Stopping bots..."
     pkill -f "python3 -m AnonXMusic"
-    pkill -f "python3 -m pyUltroid"
+    pkill -f "python3 -m __main__"
     exit 0
 }
 
@@ -78,10 +108,10 @@ main() {
         exit 1
     fi
 
-    # Install required packages if not already installed
-    if ! pip3 list | grep -q "pyrogram"; then
-        print_status "$YELLOW" "Installing required packages..."
-        pip3 install -r requirements.txt
+    # Check and install only missing requirements
+    if ! check_requirements; then
+        print_status "$RED" "Failed to install required packages. Please check your internet connection and try again."
+        exit 1
     fi
 
     # Run both bots in parallel
