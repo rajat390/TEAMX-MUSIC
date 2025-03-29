@@ -74,6 +74,7 @@ REDIS_URI = config("REDIS_URI", default=None) or config("REDIS_URL", default=Non
 REDIS_PASSWORD = config("REDIS_PASSWORD", default=None)
 ADDONS = config("ADDONS", default=False, cast=bool)
 VCBOT = config("VCBOT", default=False, cast=bool)
+VC_SESSION = config("VC_SESSION", default=None)
 REDISPASSWORD = config("REDISPASSWORD", default=None)
 REDISHOST = config("REDISHOST", default=None)
 REDISPORT = config("REDISPORT", default=None)
