@@ -25,10 +25,10 @@ MONGO_DB_URI = getenv("MONGO_DB_URI")
 DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 240))
 
 # Chat id of a group for logging bot's activities
-LOGGER_ID = int(getenv("LOGGER_ID", ))
+LOGGER_ID = int(getenv("LOGGER_ID"))
 
 # Get this value from @FallenxBot on Telegram by /id
-OWNER_ID = int(getenv("OWNER_ID", ))
+OWNER_ID = int(getenv("OWNER_ID"))
 
 ## Fill these variables if you're deploying on heroku.
 # Your heroku app name
@@ -41,7 +41,7 @@ UPSTREAM_BRANCH = config("UPSTREAM_BRANCH", default=getenv("UPSTREAM_BRANCH", "m
 GIT_TOKEN = config("GIT_TOKEN", default=getenv("GIT_TOKEN", None))
 SUPPORT_CHANNEL = config("SUPPORT_CHANNEL", default=getenv("SUPPORT_CHANNEL", "https://t.me/xteam_cloner"))
 SUPPORT_CHAT = config("SUPPORT_CHAT", default=getenv("SUPPORT_CHAT", "https://t.me/xteam_cloner"))
-PRIVATE_BOT_MODE = config("PRIVATE_BOT_MODE", default=getenv("PRIVATE_BOT_MODE", "False"))
+PRIVATE_BOT_MODE = config("PRIVATE_BOT_MODE", default=getenv("PRIVATE_BOT_MODE", "False")).lower() in ("true", "1", "t")
 AUTO_LEAVING_ASSISTANT = config("AUTO_LEAVING_ASSISTANT", default=getenv("AUTO_LEAVING_ASSISTANT", "False")).lower() in ("true", "1", "t")
 SPOTIFY_CLIENT_ID = config("SPOTIFY_CLIENT_ID", default=getenv("SPOTIFY_CLIENT_ID", "e9d00bfcd9a246dabd5c36256ba2302c"))
 SPOTIFY_CLIENT_SECRET = config("SPOTIFY_CLIENT_SECRET", default=getenv("SPOTIFY_CLIENT_SECRET", "0f2b27d79dcf4808bcd4f16e5d7a1478"))
@@ -81,7 +81,7 @@ REDISUSER = config("REDISUSER", default=None)
 DATABASE_URL = config("DATABASE_URL", default=None)
 
 # Ensure required environment variables are loaded
-if not config.STRING1:
+if not STRING1:
     raise ValueError("STRING_SESSION environment variable is missing")
 
 # Helper functions
@@ -89,12 +89,12 @@ def time_to_seconds(time):
     stringt = str(time)
     return sum(int(x) * 60**i for i, x in enumerate(reversed(stringt.split(":"))))
 
-DURATION_LIMIT = int(time_to_seconds(f"{Config.DURATION_LIMIT_MIN}:00"))
+DURATION_LIMIT = int(time_to_seconds(f"{DURATION_LIMIT_MIN}:00"))
 
-if config.SUPPORT_CHANNEL and not re.match(r"(?:http|https)://", Config.SUPPORT_CHANNEL):
+if SUPPORT_CHANNEL and not re.match(r"(?:http|https)://", SUPPORT_CHANNEL):
     raise SystemExit("[ERROR] - Your SUPPORT_CHANNEL URL is incorrect. Please ensure it starts with https://")
 
-if config.SUPPORT_CHAT and not re.match(r"(?:http|https)://", Config.SUPPORT_CHAT):
+if SUPPORT_CHAT and not re.match(r"(?:http|https)://", SUPPORT_CHAT):
     raise SystemExit("[ERROR] - Your SUPPORT_CHAT URL is incorrect. Please ensure it starts with https://")
 
 # Global variables
@@ -104,4 +104,3 @@ lyrical = {}
 votemode = {}
 autoclean = []
 confirmer = {}
-    
