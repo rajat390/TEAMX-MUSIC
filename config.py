@@ -5,11 +5,15 @@ from dotenv import load_dotenv
 from pyrogram import filters
 import sys
 from decouple import config
+import re
+from os import getenv
+
+from dotenv import load_dotenv
+from pyrogram import filters
 
 load_dotenv()
 
 # Configuration using getenv and decouple config
-class Config:
     API_ID = int(config("API_ID", default=getenv("API_ID")))
     API_HASH = config("API_HASH", default=getenv("API_HASH"))
     BOT_TOKEN = config("BOT_TOKEN", default=getenv("BOT_TOKEN"))
