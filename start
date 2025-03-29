@@ -1,12 +1,41 @@
 #!/bin/bash
 
-if python3 -m AnonXMusic; then
+# Function to run AnonXMusic and handle errors
+run_anonxmusic() {
+  if python3 -m AnonXMusic; then
+    return 0  # Success
+  else
+    echo "AnonXMusic failed."
+    return 1  # Failure
+  fi
+}
+
+# Function to run pyUltroid and handle errors
+run_pyultroid() {
   if python3 -m pyUltroid; then
+    return 0  # Success
   else
     echo "pyUltroid failed."
-    exit 1
+    return 1  # Failure
   fi
-else
-  echo "AnonXMusic failed."
-  exit 1
-fi
+}
+
+# Run in an alternating fashion
+while true; do
+  if run_anonxmusic; then
+    echo "AnonXMusic ran successfully. Starting pyUltroid."
+    if run_pyultroid; then
+      echo "pyUltroid ran successfully. Restarting AnonXMusic."
+    else
+      echo "pyUltroid failed. Restarting AnonXMusic."
+    fi
+  else
+      echo "AnonXMusic failed. Trying pyUltroid."
+      if run_pyultroid; then
+          echo "pyUltroid ran successfully. Starting AnonXMusic."
+      else
+          echo "pyUltroid failed. Restarting AnonXMusic."
+      fi
+  fi
+  sleep 5 # wait for 5 seconds before the next loop. Adjust as needed.
+done
