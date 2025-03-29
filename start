@@ -36,27 +36,40 @@ check_env() {
 
 # Function to run AnonXMusic and handle errors
 run_anonxmusic() {
-    print_status "$YELLOW" "Starting AnonXMusic bot..."
-    if python3 -m AnonXMusic; then
-        print_status "$GREEN" "AnonXMusic is running successfully!"
-        return 0
-    else
-        print_status "$RED" "AnonXMusic failed to start."
-        return 1
-    fi
+    while true; do
+        print_status "$YELLOW" "Starting AnonXMusic bot..."
+        if python3 -m AnonXMusic; then
+            print_status "$GREEN" "AnonXMusic is running successfully!"
+        else
+            print_status "$RED" "AnonXMusic failed to start. Retrying in 5 seconds..."
+            sleep 5
+        fi
+    done
 }
 
 # Function to run pyUltroid and handle errors
 run_pyultroid() {
-    print_status "$YELLOW" "Starting pyUltroid userbot..."
-    if python3 -m pyUltroid; then
-        print_status "$GREEN" "pyUltroid is running successfully!"
-        return 0
-    else
-        print_status "$RED" "pyUltroid failed to start."
-        return 1
-    fi
+    while true; do
+        print_status "$YELLOW" "Starting pyUltroid userbot..."
+        if python3 -m pyUltroid; then
+            print_status "$GREEN" "pyUltroid is running successfully!"
+        else
+            print_status "$RED" "pyUltroid failed to start. Retrying in 5 seconds..."
+            sleep 5
+        fi
+    done
 }
+
+# Function to stop bots
+stop_bots() {
+    print_status "$YELLOW" "Stopping bots..."
+    pkill -f "python3 -m AnonXMusic"
+    pkill -f "python3 -m pyUltroid"
+    exit 0
+}
+
+# Trap Ctrl+C
+trap stop_bots SIGINT
 
 # Main execution
 main() {
@@ -71,29 +84,19 @@ main() {
         pip3 install -r requirements.txt
     fi
 
-    # Run both bots in parallel with error handling
-    while true; do
-        # Start AnonXMusic
-        if run_anonxmusic; then
-            print_status "$GREEN" "AnonXMusic started successfully."
-        else
-            print_status "$RED" "Failed to start AnonXMusic. Retrying in 5 seconds..."
-            sleep 5
-            continue
-        fi
-
-        # Start pyUltroid
-        if run_pyultroid; then
-            print_status "$GREEN" "pyUltroid started successfully."
-        else
-            print_status "$RED" "Failed to start pyUltroid. Retrying in 5 seconds..."
-            sleep 5
-            continue
-        fi
-
-        # If both bots are running, wait before checking again
-        sleep 10
-    done
+    # Run both bots in parallel
+    print_status "$YELLOW" "Starting both bots in parallel..."
+    
+    # Start AnonXMusic in background
+    run_anonxmusic &
+    MUSIC_PID=$!
+    
+    # Start pyUltroid in background
+    run_pyultroid &
+    ULTROID_PID=$!
+    
+    # Wait for both processes
+    wait $MUSIC_PID $ULTROID_PID
 }
 
 # Run the main function
