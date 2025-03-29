@@ -336,7 +336,7 @@ def UltroidDB():
                 retry_on_timeout=True,
             )
         elif MongoClient:
-            return MongoDB(config.MONGO_URI)
+            return MongoDB(config.MONGO_DB_URI)
         elif psycopg2:
             return SqlDB(config.DATABASE_URL)
         else:
