@@ -52,7 +52,7 @@ def load_other_plugins(addons=None, pmbot=None, manager=None, vcbot=None):
     _exclude = _exclude.split() if _exclude else []
 
     # "INCLUDE_ONLY" was added to reduce Big List in "EXCLUDE_OFFICIAL" Plugin
-    _in_only = udB.get_key("INCLUDE_ONLY") or config("INCLUDE_ONLY", None)
+    _in_only = udB.get_key("INCLUDE_ONLY") or config.config("INCLUDE_ONLY", None)
     _in_only = _in_only.split() if _in_only else []
     Loader().load(include=_in_only, exclude=_exclude, after_load=_after_load)
 
