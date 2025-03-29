@@ -27,15 +27,19 @@ while true; do
     if run_pyultroid; then
       echo "pyUltroid ran successfully. Restarting AnonXMusic."
     else
-      echo "pyUltroid failed. Restarting AnonXMusic."
+      echo "pyUltroid failed. Exiting."
+      break # Stop if pyUltroid fails
     fi
   else
       echo "AnonXMusic failed. Trying pyUltroid."
       if run_pyultroid; then
           echo "pyUltroid ran successfully. Starting AnonXMusic."
       else
-          echo "pyUltroid failed. Restarting AnonXMusic."
+          echo "pyUltroid failed. Exiting."
+          break # Stop if pyUltroid fails.
       fi
   fi
   sleep 5 # wait for 5 seconds before the next loop. Adjust as needed.
 done
+
+echo "Script terminated."
