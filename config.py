@@ -14,7 +14,7 @@ from pyrogram import filters
 load_dotenv()
 
 # Configuration using getenv and decouple config
-    API_ID = int(getenv("API_ID"))
+API_ID = int(getenv("API_ID"))
 API_HASH = getenv("API_HASH")
 
 # Get your token from @BotFather on Telegram.
