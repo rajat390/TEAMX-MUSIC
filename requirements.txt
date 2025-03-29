@@ -80,3 +80,4 @@ telegraph
 tgcrypto
 youtube-search-python
 yt-dlp
+Python_ARQ
