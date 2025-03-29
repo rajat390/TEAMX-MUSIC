@@ -20,7 +20,7 @@ from telethon.errors import (
     AuthKeyDuplicatedError,
 )
 from telethon.sessions import StringSession
-from config import Var
+import config
 from . import *
 
 
@@ -44,8 +44,8 @@ class UltroidClient(TelegramClient):
         self._log_at = log_attempt
         self.logger = logger
         self.udB = udB
-        kwargs["api_id"] = api_id or Var.API_ID
-        kwargs["api_hash"] = api_hash or Var.API_HASH
+        kwargs["api_id"] = api_id or config.API_ID
+        kwargs["api_hash"] = api_hash or config.API_HASH
         kwargs["base_logger"] = TelethonLogger
         super().__init__(session, **kwargs)
         self.run_in_loop(self.start_client(bot_token=bot_token))
