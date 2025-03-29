@@ -13,7 +13,7 @@ class Config:
     API_ID = int(config("API_ID", default=getenv("API_ID")))
     API_HASH = config("API_HASH", default=getenv("API_HASH"))
     BOT_TOKEN = config("BOT_TOKEN", default=getenv("BOT_TOKEN"))
-    MONGO_DB_URI = config("MONGO_DB_URI", default=getenv("MONGO_DB_URI"))
+    MONGO_DB_URI = getenv("MONGO_DB_URI")
     DURATION_LIMIT_MIN = int(config("DURATION_LIMIT", default=getenv("DURATION_LIMIT", "300")))
     LOGGER_ID = int(config("LOGGER_ID", default=getenv("LOGGER_ID")))
     OWNER_ID = int(config("OWNER_ID", default=getenv("OWNER_ID")))
