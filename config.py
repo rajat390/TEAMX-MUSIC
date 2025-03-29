@@ -19,7 +19,7 @@ API_HASH = getenv("API_HASH")
 
 # Get your token from @BotFather on Telegram.
 BOT_TOKEN = getenv("BOT_TOKEN")
-
+SESSION = getenv("SESSION")
 BOT_USERNAME = getenv("BOT_USERNAME", "xteam_clonebot")
 
 # Get your mongo url from cloud.mongodb.com
