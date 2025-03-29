@@ -14,15 +14,31 @@ from pyrogram import filters
 load_dotenv()
 
 # Configuration using getenv and decouple config
-    API_ID = int(config("API_ID", default=getenv("API_ID")))
-    API_HASH = config("API_HASH", default=getenv("API_HASH"))
-    BOT_TOKEN = config("BOT_TOKEN", default=getenv("BOT_TOKEN"))
-    MONGO_DB_URI = getenv("MONGO_DB_URI")
-    DURATION_LIMIT_MIN = int(config("DURATION_LIMIT", default=getenv("DURATION_LIMIT", "300")))
-    LOGGER_ID = int(config("LOGGER_ID", default=getenv("LOGGER_ID")))
-    OWNER_ID = int(config("OWNER_ID", default=getenv("OWNER_ID")))
-    HEROKU_APP_NAME = config("HEROKU_APP_NAME", default=getenv("HEROKU_APP_NAME"))
-    HEROKU_API_KEY = config("HEROKU_API_KEY", default=getenv("HEROKU_API_KEY"))
+    API_ID = int(getenv("API_ID"))
+API_HASH = getenv("API_HASH")
+
+# Get your token from @BotFather on Telegram.
+BOT_TOKEN = getenv("BOT_TOKEN")
+
+BOT_USERNAME = getenv("BOT_USERNAME", "xteam_clonebot")
+
+# Get your mongo url from cloud.mongodb.com
+MONGO_DB_URI = getenv("MONGO_DB_URI")
+
+DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 240))
+
+# Chat id of a group for logging bot's activities
+LOGGER_ID = int(getenv("LOGGER_ID", ))
+
+# Get this value from @FallenxBot on Telegram by /id
+OWNER_ID = int(getenv("OWNER_ID", ))
+
+## Fill these variables if you're deploying on heroku.
+# Your heroku app name
+HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
+# Get it from http://dashboard.heroku.com/account
+HEROKU_API_KEY = getenv("HEROKU_API_KEY")
+
     UPSTREAM_REPO = config("UPSTREAM_REPO", default=getenv("UPSTREAM_REPO", "https://github.com/xteam-cloner/TEAMX-MUSIC"))
     UPSTREAM_BRANCH = config("UPSTREAM_BRANCH", default=getenv("UPSTREAM_BRANCH", "master"))
     GIT_TOKEN = config("GIT_TOKEN", default=getenv("GIT_TOKEN", None))
