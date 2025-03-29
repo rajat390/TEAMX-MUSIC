@@ -13,11 +13,11 @@ from .. import run_as_module
 from . import *
 
 if run_as_module:
-    import config
+    from ..configs import Var
 
 
 Redis = MongoClient = psycopg2 = Database = None
-if config.REDIS_URI or config.REDISHOST:
+if Var.REDIS_URI or Var.REDISHOST:
     try:
         from redis import Redis
     except ImportError:
