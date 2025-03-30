@@ -31,7 +31,7 @@ DC_IPV4 = {
 
 
 def validate_session(session, logger=LOGS, _exit=True):
-    from strings import get_string
+    from resources.strings import get_string
 
     if session:
         # Telethon Session
@@ -74,7 +74,7 @@ def validate_session(session, logger=LOGS, _exit=True):
 
 
 def vc_connection(udB, ultroid_bot):
-    from strings import get_string
+    from resources.strings import get_string
 
     VC_SESSION = config.VC_SESSION or udB.get_key("VC_SESSION")
     if VC_SESSION and VC_SESSION != config.SESSION:
