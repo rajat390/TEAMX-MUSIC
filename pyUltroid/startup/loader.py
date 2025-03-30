@@ -23,7 +23,7 @@ from .utils import load_addons
 def _after_load(loader, module, plugin_name=""):
     if not module or plugin_name.startswith("_"):
         return
-    from strings import get_help
+    from resources.strings import get_help
 
     if doc_ := get_help(plugin_name) or module.__doc__:
         try:
